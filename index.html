@@ -8,23 +8,18 @@
     <link rel="stylesheet" href="assets/reset.css">
     <link rel="stylesheet" href="assets/style.css">
 
-    <!--jquery-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js"></script>
-   
-    <!--Bootstrap CSS & JS-->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" 
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" 
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    
-    
     <!-- Firebase scripts-->
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
+        
+    <!--jquery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js"></script>
+   
+    <!-- Bootstrap -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     
-   <!--moment-->
+    <!--moment-->
    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
 
@@ -43,7 +38,7 @@
                     <h6 id=currTime></h6>
                 </div>
                 <div class="panel-body">
-                    <table class="table">
+                    <table class="train table-hover" id=trainTable>
                         <thead>
                             <!--Train Schedule-->
                             <tr>
@@ -54,7 +49,7 @@
                                 <th>Minutes Away</th>
                             </tr>
                         </thead>
-                            <tbody id="full-train-schedule">
+                        <tbody>
                         </tbody>
                     </table>
                 </div>
@@ -70,22 +65,22 @@
 
                         <div class="form-group">
                         <label for="train-name">Train Name</label>
-                        <input type="text" class="form-control" name="train-name" id="train-name" value="">
+                        <input type="text" class="form-control"  id="trainNameInput" value="">
                         </div>
 
                         <div class="form-group">
                             <label for="destination">Destination</label>
-                            <input type="text" class="form-control" name="destination" id="destination" value="">
+                            <input type="text" class="form-control" id="destinationInput" value="">
                         </div>
 
                         <div class="form-group">
                             <label for="init-depart-time">Boarding Time</label>
-                            <input type="time" class="form-control" name="init-depart-time" id="init-depart-time" value="">
+                            <input type="time" class="form-control"  id="firstTrainInput" value="">
                         </div>
 
                         <div class="form-group">
                             <label for="frequency">Frequency (min)</label>
-                            <input type="text" class="form-control" name="frequency" id="frequency" value="">
+                            <input type="text" class="form-control" id="frequencyInput" value="">
                         </div>
 
                         <button id="add-train" class="btn btn-secondary">Add Train</button>

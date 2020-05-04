@@ -1,44 +1,45 @@
-var firebaseConfig = {
-    apiKey: "AIzaSyBtbkCV8EiaKwnkwRK2FOjnJUIf5wW4lTw",
-    authDomain: "trainschedul-f50f8.firebaseapp.com",
-    databaseURL: "https://trainschedul-f50f8.firebaseio.com",
-    projectId: "trainschedul-f50f8",
-    storageBucket: "trainschedul-f50f8.appspot.com",
-    messagingSenderId: "1090286479225",
-    appId: "1:1090286479225:web:8614c668ec663e465b31a8",
-    measurementId: "G-V95P7WHK1R"
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBG84xvyv5HC8YYJsZ4Dh8bva-Aooy77ho",
+    authDomain: "wanderlust-railroad.firebaseapp.com",
+    databaseURL: "https://wanderlust-railroad.firebaseio.com",
+    projectId: "wanderlust-railroad",
+    storageBucket: "wanderlust-railroad.appspot.com",
+    messagingSenderId: "646638753921",
+    appId: "1:646638753921:web:cfbecc9b993b5dd768d580",
+    measurementId: "G-K0XRTME1V3"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
+  
 
 
 var trainData = firebase.database();
 
-$("addTrainBtn").on("click",function(){
+$("#add-train-btn").on("click", function(event){
+    event.preventDefault();
     var trainName = $("#trainNameInput").val().trim();
     var destination = $("#destinationInput").val().trim();
-    var firstTrain = moment($("#firstTrainInput").val().trim(),"HH:mm").subtract(10,"years").format("X");
-    var frequency = $("frequencyInput").val().trim();
+    var firstTrain = $("#firstTrainInput").val().trim();
+    var frequency = $("#frequencyInput").val().trim();
 
     var newTrain = {
         name: trainName,
         destination: destination,
         firstTrain: firstTrain,
         frequency: frequency
-    }
+    };
 
     trainData.ref().push(newTrain);
 
     alert("Train Added!");
 
     $("#trainNameInput").val("");
-    $("#festinationInput").val("");
+    $("#destinationInput").val("");
     $("#firstTrainInput").val("");
     $("#frequencyInput").val("");
 
-    return false;
-})
+});
 
 trainData.ref().on("child_added",function(snapshot){
     var name = snapshot.val().name;
@@ -54,4 +55,6 @@ trainData.ref().on("child_added",function(snapshot){
     console.log(minutes);
     console.log(arrival);
 
-})
+$("#trainTable > tBody").append("<tr><td>"+name+"</td><td>"+destination+"</td><td>"+frequency+"</td><td>"+arrival+"</td><td>"+minutes+"</td></tr>");
+
+  })
