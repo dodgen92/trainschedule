@@ -16,7 +16,7 @@
 
 var trainData = firebase.database();
 
-$("#add-train-btn").on("click", function(event){
+$("#add-train").on("click", function(event){
     event.preventDefault();
     var trainName = $("#trainNameInput").val().trim();
     var destination = $("#destinationInput").val().trim();
