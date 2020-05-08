@@ -20,7 +20,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     
     <!--moment-->
-   <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment-with-locales.min.js"></script>"></script>
 
 
 </head>
@@ -38,7 +38,7 @@
                     <h6 id=currTime></h6>
                 </div>
                 <div class="panel-body">
-                    <table class="train table-hover" id=trainTable>
+                    <table class="table-bordered" id=trainTable>
                         <thead>
                             <!--Train Schedule-->
                             <tr>
@@ -50,6 +50,8 @@
                             </tr>
                         </thead>
                         <tbody>
+                        
+                        
                         </tbody>
                     </table>
                 </div>
@@ -74,10 +76,10 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="init-depart-time">Boarding Time</label>
-                            <input type="time" class="form-control"  id="firstTrainInput" value="">
+                            <label for="first-train-input">First Train Time (HH:mm - military time)</label>
+                            <input type="text" class="form-control" id="firstTrainInput">
                         </div>
-
+            
                         <div class="form-group">
                             <label for="frequency">Frequency (min)</label>
                             <input type="text" class="form-control" id="frequencyInput" value="">
@@ -97,6 +99,6 @@
         ©Copyright 2020, T. Remington Dodgen, github
 
         <script src="logic.js"></script>
-        
+        <script src="clock.js"></script>
 </body>
 </html>

@@ -1,3 +1,8 @@
+    
+//Get Current Time for the page
+currentTime = moment();
+$("#currTime").html("Current Time: " + moment(currentTime).format("hh:mm a"));
+  
   // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyBG84xvyv5HC8YYJsZ4Dh8bva-Aooy77ho",
@@ -47,14 +52,37 @@ trainData.ref().on("child_added",function(snapshot){
     var frequency = snapshot.val().frequency;
     var firstTrain = snapshot.val().firstTrain;
 
-    var remainder = moment().diff(moment.unix(firstTrain),"minutes")%frequency;
-    var minutes = frequency - remainder;
-    var arrival = moment().add(minutes,"m").format("hh:mm A");
+    var timeSplit = firstTrain.split(":")
+    var trainTime = moment().hours(timeSplit[0]).minutes(timeSplit[1]);
+    var maxMoment = moment.max(moment(), trainTime);
+    var timeMin;
+    var timeArr;
+  
+   if (maxMoment === trainTime) {
+    timeArr = trainTime.format("hh:mm A");
+    timeMin = trainTime.diff(moment(), "minutes");
+  } else {
+  
+    var differenceTimes = moment().diff(trainTime, "minutes");
+    var tRemainder = differenceTimes % frequency;
+    timeMin = frequency - tRemainder;
+ 
+    timeArr = moment().add(timeMin, "m").format("hh:mm A");
+  }
+  console.log("timeMin:", timeMin);
+  console.log("timeArr:", timeArr);
 
-    console.log(remainder);
-    console.log(minutes);
-    console.log(arrival);
 
-$("#trainTable > tBody").append("<tr><td>"+name+"</td><td>"+destination+"</td><td>"+frequency+"</td><td>"+arrival+"</td><td>"+minutes+"</td></tr>");
+    
+    
+    console.log(tRemainder);
+    console.log(timeMin);
+    console.log(timeArr);
+
+
+
+
+
+   $("#trainTable > tBody").append("<tr><td>"+name+"</td><td>"+destination+"</td><td>"+frequency+"</td><td>"+timeArr+"</td><td>"+timeMin+"</td></tr>");
 
   })
